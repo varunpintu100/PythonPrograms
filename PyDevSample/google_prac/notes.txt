@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+const  int MAX_N =1e3+14;
+int n,d[MAX_N][MAX_N];
+vector<pair<int,int> >g[MAX_N];
+set<pair<int,int>>pq;
+int dis[MAX_N];
+void dij(int source){
+    fill(dis,dis+n,1e9);
+    dis[source]=0;
+    pq.insert({0,source});
+    while(pq.size())
+    {
+        int v=pq.begin() -> second;
+        pq.erase(pq.begin());
+        for(auto e: g[v])
+        if(dis[e.first]>dis[v]+e.second){
+            pq.erase({dis[e.first],e.first});
+            pq.insert({dis[e.first]=dis[v]+e.second,e.first});
+        }
+    }
+}
+int main()
+{
+    cin>>n;
+    for(int i=0;i<n;++i){
+        for(int j=0;j<n;++j){
+            cin>>d[i][j];
+        }
+    }
+    size_t m;
+    cin>>m;
+    assert(m<=(n*(n-1));
+    for(int i=0;i<m;++i)
+    {
+        size_t v,u,w;
+        cin>>v>>u>>w;
+        --v;
+        --u;
+        assert(v<n&&u<n&&w<=1e5);
+        g[v].emplace_back(u,v);
+    }
+    long long ans=0;
+    for(int i=0;i<n;++i){
+        dij(i);
+        for(int j=0;j<n;++j){
+            assert(dis[j]<1e9)
+            ans +=abs(d[i][j]-dis[j]);
+        }
+    }
+    cout<<ans+1<<'\n';
+    }
