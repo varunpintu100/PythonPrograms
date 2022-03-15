@@ -1,13 +1,16 @@
 from tkinter import *
 from main.weatherapi import *
+from PIL import ImageTk, Image
 if __name__=='__main__':
     window = Tk() #intializes the window using the tkinter initialization
     window.title("Weather Application")
     window.geometry('900x600')
-    window.config(bg='#0f4b6e')
+    icon1 = ImageTk.PhotoImage(Image.open(r"C:\Users\varunpintu\eclipse-workspace\WetherForecast\main\back.jpeg"))
+    label1 = Label( window, image = icon1)
+    label1.place(x = 0, y = 0)
     scrollbar = Scrollbar(window)
     scrollbar.pack(side=RIGHT, fill=Y)
-    l1=Label(window, text="Enter the location to find the weather : ",font=("Courier",12),bg='#0f4b6e',fg='white')
+    l1=Label(window, text="Enter the location to find the weather : ",font=("Courier",12),fg='Black')
     l1.pack()
     txt=Entry(window,width=45)
     txt.pack()
