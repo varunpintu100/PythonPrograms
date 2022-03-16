@@ -1,21 +1,22 @@
 import requests
 import os
 from datetime import datetime
+import logging
 
+logging.basicConfig(filename='app.log', level=logging.DEBUG)
 def current_City(location):
     user_api= os.environ["CurrentWeather"]
 
     complete_api_link= "https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+user_api
-    print(complete_api_link)
+    logging.debug(complete_api_link)
 
     api_link= requests.get(complete_api_link)
     api_data= api_link.json()
-    print(api_data)
     if api_data['cod'] == '400':
-        print("Please enter a city name")
+        logging.debug("Please enter a city name")
         return api_data
     if api_data['cod'] == "404":
-        print ("Invalid City: {}, Please check you City name".format(location))
+        logging.debug ("Invalid City: {}, Please check you City name".format(location))
         return api_data
     else:
         temp_city= ((api_data['main']['temp'])-273.15)
@@ -23,12 +24,12 @@ def current_City(location):
         hmdt = api_data['main']['humidity']
         wind_spd = api_data[ 'wind' ]['speed']
         date_time = datetime.now().strftime("%d %b %Y | %I:%M:%S %p")
-        print ("---------------------------------------------------------")
-        print ("Weather Stats for - {}   ||   {} ".format(location.upper(), date_time))
-        print ("----------------------------------------------------------------")
-        print ("Current temperature is: {0:.2f} deg C".format(temp_city))
-        print ("Current weather desc: ",weather_desc)
-        print ("Current Humidity : ",hmdt,"%")
-        print ("Current windspeed : ",wind_spd,"kmph")
+        logging.debug ("---------------------------------------------------------")
+        logging.debug ("Weather Stats for - {}   ||   {} ".format(location.upper(), date_time))
+        logging.debug ("----------------------------------------------------------------")
+        logging.debug ("Current temperature is: {0:.2f} deg C".format(temp_city))
+        logging.debug ("Current weather desc: {} ".format(weather_desc))
+        logging.debug ("Current Humidity : {}%".format(hmdt))
+        logging.debug ("Current windspeed : {}kmph".format(wind_spd))
     return api_data
   
