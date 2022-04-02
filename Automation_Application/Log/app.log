@@ -1,0 +1,8 @@
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:50827/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "firefox", "acceptInsecureCerts": true, "moz:debuggerAddress": true, "pageLoadStrategy": "normal"}}, "desiredCapabilities": {"browserName": "firefox", "acceptInsecureCerts": true, "moz:debuggerAddress": true, "pageLoadStrategy": "normal"}}
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): localhost:50827
+DEBUG:urllib3.connectionpool:http://localhost:50827 "POST /session HTTP/1.1" 200 768
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:selenium.webdriver.remote.remote_connection:POST http://localhost:50827/session/215a7e3f-ce7d-4171-a987-5fbbd41e7639/window/maximize {}
+DEBUG:urllib3.connectionpool:http://localhost:50827 "POST /session/215a7e3f-ce7d-4171-a987-5fbbd41e7639/window/maximize HTTP/1.1" 200 51
+DEBUG:selenium.webdriver.remote.remote_connection:Finished Request
+DEBUG:root:----------------------- ! FireFox Browser is invoked ! ----------------------

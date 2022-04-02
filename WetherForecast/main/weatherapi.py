@@ -6,7 +6,6 @@ import logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 def current_City(location):
     user_api= os.environ["CurrentWeather"]
-
     complete_api_link= "https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+user_api
     logging.debug(complete_api_link)
 

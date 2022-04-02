@@ -50,6 +50,7 @@ if __name__=='__main__':
             disp_text.config(text='--------------------------------------------------------------'+'\n'+"Weather Stats for - {}   ||   {}\n".format(res.upper(), date_time)+"--------------------------------------------------------------\n"+"Current temperature is: {0:.2f} deg C\n".format(temp_city)+"Current weather desc: {}\n".format(weather_desc)+"Current Humidity : {}%\n ".format(hmdt)+"Current windspeed : {}kmph\n".format(wind_spd))
     def clear():
         txt.delete(0, 'end')
+        disp_text.config(text="")
     bt1=Button(window,text="Get Data",command=clicked,relief=SOLID,font=("Courier",10))
     bt1.config(height=1,width=15)
     bt1.place(x=305,y=55)
