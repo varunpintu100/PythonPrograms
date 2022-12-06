@@ -6,7 +6,15 @@ def voicecall(text,id):
     converter.setProperty('volume', 1.0)  # controlls the volume of the speech
     voice_id= id
     converter.setProperty('voice', voice_id) #setting the voice can be done or not based on the request
-    converter.say(text) #this is used to spell out the text 
+    converter.say(text) #this is used to spell out the text
+    converter.runAndWait()
+def download_voice(text,id):
+    converter = pyttsx3.init()  #initializes text to speech and stores in a object
+    converter.setProperty('rate', 150)   # initializes text rate of speech
+    converter.setProperty('volume', 1.0)  # controlls the volume of the speech
+    voice_id= id
+    converter.setProperty('voice', voice_id) #setting the voice can be done or not based on the request
+    converter.save_to_file(text, 'speech.mp3') #this is used to spell out the text
     converter.runAndWait()
 if __name__=='__main__':
     window = Tk() #intializes the window using the tkinter initialization
@@ -25,8 +33,14 @@ if __name__=='__main__':
         id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
         res = txt.get()
         voicecall(res,id)
+    def clicked2():
+        id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
+        res = txt.get()
+        download_voice(res, id)
     bt2=Button(window,text="Zira_Voice",command=clicked1,font=("Courier",10))
     bt2.grid(column=2,row=1)
     bt=Button(window,text="quit",command=window.destroy,font=("Courier",10))
     bt.grid(column=1,row=1)
+    bt3 = Button(window, text="Download", command=clicked2, font=("Courier", 10))
+    bt3.grid(column=2,row=2)
 window.mainloop()
